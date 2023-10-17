@@ -58,37 +58,37 @@ int set_alias(info_t *info, char *str)
 }
 
 /**
- * print_alias - prints alias string
+ * print_alias - prints an alias string
  * @node: the alias node
  *
- * Return: Always 1 on success, 2 on error
+ * Return: Always 0 on success, 1 on error
  */
 int print_alias(list_t *node)
 {
-	char *z = NULL, *a = NULL;
+	char *p = NULL, *a = NULL;
 
 	if (node)
 	{
-		z = _strchr(node->str, '=');
-		for (z = node->str; a <= z; a++)
-		_putchar(*a);
+		p = _strchr(node->str, '=');
+		for (a = node->str; a <= p; a++)
+			_putchar(*a);
 		_putchar('\'');
-		_puts(z + 1);
+		_puts(p + 1);
 		_puts("'\n");
-		return (1);
+		return (0);
 	}
-	return (2);
+	return (1);
 }
 
 /**
- * _myalias - mimics alias builtin (man alias)
+ * _myalias - mimics the alias builtin (man alias)
  * @info: Structure containing potential arguments. Used to maintain
  *          constant function prototype.
  *  Return: Always 0
  */
 int _myalias(info_t *info)
 {
-	int v = 0;
+	int i = 0;
 	char *p = NULL;
 	list_t *node = NULL;
 
@@ -102,13 +102,13 @@ int _myalias(info_t *info)
 		}
 		return (0);
 	}
-	for (v = 1; info->argv[v]; v++)
+	for (i = 1; info->argv[i]; i++)
 	{
-		p = _strchr(info->argv[v], '=');
+		p = _strchr(info->argv[i], '=');
 		if (p)
-			set_alias(info, info->argv[v]);
+			set_alias(info, info->argv[i]);
 		else
-			print_alias(node_starts_with(info->alias, info->argv[v], '='));
+			print_alias(node_starts_with(info->alias, info->argv[i], '='));
 	}
 
 	return (0);
