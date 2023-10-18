@@ -1,11 +1,10 @@
 #include <stdio.h>
 
 /*
- * main -main entry
- * Return - always 0
+ * main - main entry
+ * return - Always success
  */
-
-int string(void)
+int main(void);
 {
-	puts("I'm martin");
+	puts("hello martin");
 }
